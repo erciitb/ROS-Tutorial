@@ -1,4 +1,4 @@
-#ROS Tutorial cum Challenge
+# ROS Tutorial cum Challenge
 
 Hello everyone,
 Hope you are safe and doing some productive work at home. If you are enthusiastic in robotics then, Electronics and Robotics Club is here once again to help you out in exploring this field along with ITSP.
@@ -14,12 +14,12 @@ ___ROS___, which means the Robot Operating System, is a set of software librarie
 | 3	| Week 3 | Create your first simulation! And perform the task that can be implemented in real life! |
 | 4	| Week 4 |Autonomous Navigation and path planning |
 
-###Main Objectives of this Tutorial:
+### Main Objectives of this Tutorial:
 1. The objective of this course is to give you the basic tools and knowledge to be able to understand and create any basic ROS related project. You will be able to move robots, read their sensor data, make the robots perform intelligent tasks, see visual representations of complex data such as laser scans and debug errors in the programs.
 1. This will allow you to understand the packages that others have done. So you can take ROS code made by others and understand what is happening and how to modify it for your own purposes
 1. This can serve as an introduction to be able to understand the ROS documentation of complex ROS packages for object recognition, text to speech, navigation and all the other areas where ROS developed code.
 
-##Week 1
+## Week 1
 * __Ubuntu Installation__ :
 For using Ros framework Ubuntu is necessary:
 (It's Preferable that you install Ubuntu 16.04)
