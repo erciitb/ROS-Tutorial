@@ -56,7 +56,7 @@ The official definition on ROS wiki is:
 #### **Basics of ROS**
 
 First of all, let us start with the basics of ROS.
-Go through the beginner level [Tutorials](http://wiki.ros.org/ROS/Tutorials). It will cover all the basics materials like how to create a package, what is a node and how to make it, what is a publisher and a subscriber? It will give you a detailed introduction to each and every thing. There are **20** parts to this tutorial, go through them all. Don't go to the intermediate level right now if you get done with the beginner level. We will give you an assignment based on these topics. **Write code on your own. Don't copy paste it directly.**  You will grasp the topics covered better when you try the implementation on your own. Assignment will be releasd soon. It's preferable if you use __Python__ instead of __C++__ as python syntax is easier and more readable and you will need it in future for sure, so, better learn it right now. These assignments will require knowledge of only basic python syntax.
+Go through the beginner level [Tutorials](http://wiki.ros.org/ROS/Tutorials#Beginner_Level). It will cover all the basics materials like how to create a package, what is a node and how to make it, what is a publisher and a subscriber? It will give you a detailed introduction to each and every thing. There are **20** parts to this tutorial, go through them all. Don't go to the intermediate level right now if you get done with the beginner level. We will give you an assignment based on these topics. **Write code on your own. Don't copy paste it directly.**  You will grasp the topics covered better when you try the implementation on your own. Assignment will be releasd soon. It's preferable if you use __Python__ instead of __C++__ as python syntax is easier and more readable and you will need it in future for sure, so, better learn it right now. These assignments will require knowledge of only basic python syntax.
 
 Here, we are briefing about what is a package and how to create a package. This is also given in the tutorials, but we are telling this explicitly because it is the most fundamental thing that you have to do when you start with ROS.
 
@@ -116,7 +116,7 @@ nano .bashrc	# open the .bashrc file
 Add the command `source ~/catkin_ws/devel/setup.bash` to the end of *.bashrc*.  
 Then, hit <kbd>CTRL</kbd>+<kbd>X</kbd>, then, <kbd>Y</kbd>, to save the changes to the file.
 
-Now, you can refer to the [tutorials](http://wiki.ros.org/ROS/Tutorials) on ROS wiki for further instructions.
+Now, you can refer to the [tutorials](http://wiki.ros.org/ROS/Tutorials#Beginner_Level) on ROS wiki for further instructions.
 
 ---
 <!-- ## Week 2 -->
