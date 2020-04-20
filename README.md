@@ -1,7 +1,7 @@
 #### Table of Contents:
 1. [Introduction](#ros-tutorials-and-projects)
 1. [Week 1](#week-1)
-1. [Week 2](#week-2)
+<!-- 1. [Week 2](#week-2) -->
 
 
 # ROS - Tutorials and Projects
@@ -13,12 +13,12 @@ Have you ever wondered “How to coordinate between multiple drones? How to simu
 ___ROS___, which means the Robot Operating System, is a set of software libraries and tools to help you build robot applications. It provides hardware abstraction, device drivers, libraries, visualizers, message-passing, package management, and more. The point of ROS is to create a __robotics standard__, so you don't need to __reinvent the wheel anymore when building new robotic software.__
 
 
-| Sr. | Week   | Tasks |
+<!-- | Sr. | Week   | Tasks |
 :---: |:------:|:------|
 | 1 | Week 1 | Ubuntu installation, get familiar with Linux commands, ROS setup |
 | 2	| Week 2 | Get an overview of ROS Framework and get familiar with Basic terms of ROS framework |
 | 3	| Week 3 | Create your first simulation! And perform the task that can be implemented in real life! |
-| 4	| Week 4 |Autonomous Navigation and Path Planning |
+| 4	| Week 4 |Autonomous Navigation and Path Planning | -->
 
 ### Main Objectives of this Tutorial:
 1. The objective of this course is to give you the basic tools and knowledge to be able to understand and create any basic ROS related project. You will be able to move robots, read their sensor data, make the robots perform intelligent tasks, see visual representations of complex data such as laser scans and debug errors in the programs.
@@ -56,7 +56,7 @@ The official definition on ROS wiki is:
 #### **Basics of ROS**
 
 First of all, let us start with the basics of ROS.
-Go through the beginner level [Tutorials](http://wiki.ros.org/ROS/Tutorials)`. `It will cover all the basics materials like how to create a package, what is a node and how to make it, what is a publisher and a subscriber? It will give you a detailed introduction to each and every thing. There are **20** parts to this tutorial, go through them all. Don't go to the intermediate level right now if you get done with the beginner level. We will give you an assignment based on these topics. **Write code on your own. Don't copy paste it directly.**  You will grasp the topics covered better when you try the implementation on your own. Assignment will be releasd soon. It's preferable if you use __Python__ instead of __C++__ as python syntax is easier and more readable and you will need it in future for sure, so, better learn it right now. These assignments will require knowledge of only basic python syntax.
+Go through the beginner level [Tutorials](http://wiki.ros.org/ROS/Tutorials). It will cover all the basics materials like how to create a package, what is a node and how to make it, what is a publisher and a subscriber? It will give you a detailed introduction to each and every thing. There are **20** parts to this tutorial, go through them all. Don't go to the intermediate level right now if you get done with the beginner level. We will give you an assignment based on these topics. **Write code on your own. Don't copy paste it directly.**  You will grasp the topics covered better when you try the implementation on your own. Assignment will be releasd soon. It's preferable if you use __Python__ instead of __C++__ as python syntax is easier and more readable and you will need it in future for sure, so, better learn it right now. These assignments will require knowledge of only basic python syntax.
 
 Here, we are briefing about what is a package and how to create a package. This is also given in the tutorials, but we are telling this explicitly because it is the most fundamental thing that you have to do when you start with ROS.
 
@@ -119,15 +119,4 @@ Then, hit <kbd>CTRL</kbd>+<kbd>X</kbd>, then, <kbd>Y</kbd>, to save the changes 
 Now, you can refer to the [tutorials](http://wiki.ros.org/ROS/Tutorials) on ROS wiki for further instructions.
 
 ---
-## Week 2
-
-
-
-
-
-
-
-
-
-
-
+<!-- ## Week 2 -->
