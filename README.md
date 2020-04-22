@@ -1,6 +1,7 @@
 #### Table of Contents:
 1. [Introduction](#ros-tutorials-and-projects)
 1. [Week 1](#week-1)
+	* [Assignment 1](#assignment-1)
 <!-- 1. [Week 2](#week-2) -->
 
 
@@ -117,6 +118,37 @@ Add the command `source ~/catkin_ws/devel/setup.bash` to the end of *.bashrc*.
 Then, hit <kbd>CTRL</kbd>+<kbd>X</kbd>, then, <kbd>Y</kbd>, to save the changes to the file.
 
 Now, you can refer to the [tutorials](http://wiki.ros.org/ROS/Tutorials#Beginner_Level) on ROS wiki for further instructions.
+
+### Assignment 1
+
+___
+
+##### Question:
+ Create a new package with name in the following format NAME_SURNAME.
+  Now, this new package will require **three nodes** and **two launch files**. 
+
+* The first node will publish your *NAME*(string) to the topic **name_listener**
+
+* The second node will publish your *PHONE NUMBER*(int) to the topic **num_listener**
+
+* The third node will subscribe both the above topics
+
+* The first launch file contains two nodes. It contains both of the publisher nodes. 
+
+* The second launch file contains the last subscriber node.
+
+Your task is to print an assimilated string in the following format:
+
+**If you want to contact NAME, then call on this NUMBER.**
+
+NAME and NUMBER should be replaced by your own details.
+
+
+
+#### Submission details:
+You have to make a .zip file of your package and submit it to **erciitbombay@gmail.com**.  
+Submissions of only registered people will be considered.  
+**Deadline: 11:59 pm, 29/04/20**
 
 ---
 <!-- ## Week 2 -->
