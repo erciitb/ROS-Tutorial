@@ -2,7 +2,7 @@
 1. [Introduction](#ros-tutorials-and-projects)
 1. [Week 1](#week-1)
 	* [Assignment 1](#assignment-1)
-<!-- 1. [Week 2](#week-2) -->
+1. [Week 2](#week-2)
 
 
 # ROS - Tutorials and Projects
@@ -111,7 +111,7 @@ source devel/setup.bash
 This adds the *catkin_ws*  path in the current terminal session but once you close the terminal window, it forgets it! So, you will have to do it again each time you open a terminal in order for ROS to recognize your workspace! Yeah, I know, that sucks! But no worries, there is a solution. You can automate the execution of the above command each time you open a terminal window. To do that, you want to add the above command to a special file called .bashrc that is located inside your home folder.
 
 ```bash
-cd ~			# go to the home folder
+cd ~		# go to the home folder
 nano .bashrc	# open the .bashrc file
 ```
 Add the command `source ~/catkin_ws/devel/setup.bash` to the end of *.bashrc*.  
@@ -151,4 +151,181 @@ Submissions of only registered people will be considered.
 **Deadline: 11:59 pm, 29/04/20**
 
 ---
-<!-- ## Week 2 -->
+## Week 2
+
+What is presented here are the main ROS concepts that are the core of ROS. These are the most important concepts that you have to master. Once you master them, the rest of ROS can follow easily.
+
+During this course, you will learn:
+
+- How **ROS Basic Structure** works.
+- What are **ROS Topics** and how to use them.
+- What are **ROS Services** and how to use them.
+- What are **ROS Actions** and how to use them.
+- How to use **ROS Debugging Tools** for finding errors in your programs (especially Rviz).
+
+Note:
+
+  We will use **Python** as the programming language in all the course exercises
+
+
+#### Install TurtleBot packages
+
+
+During this tutorial, you will work with a simulated robot called **TurtleBot**, to apply the concepts of ROS. The following image is a picture of the robot you will work with. It is a differential drive robot, that has a Kinect sensor for environmental mapping, wheel encoders for position estimation.
+
+<img src ="https://risc.readthedocs.io/_images/kobuki.jpg" width="250"/>
+
+
+Open application called **Terminator**, you can install it by running following command in the terminal:  
+```bash
+sudo apt-get install terminator
+```
+
+It's highly recommended to use this application instead of stock Terminal. You can have tabs or split windows into few terminals. To install the required packages, execute the following command.
+
+```bash
+sudo apt-get install ros-kinetic-turtlebot ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-interactions ros-kinetic-turtlebot-simulator ros-kinetic-turtlebot-gazebo -y
+```
+
+Just copy and paste it in a terminal.
+
+
+After the installation is done, check that the simulation works in Gazebo. Execute the following command in a shell terminal.
+
+
+```bash
+roslaunch turtlebot_gazebo turtlebot_world.launch
+```
+
+
+You should get something similar to the following.
+
+![env](https://risc.readthedocs.io/_images/turtlebot-gazebo.png )
+
+#### Move the robot
+
+
+How can you move the Turtlebot?
+
+The easiest way is by executing an existing ROS program to control the robot. A ROS program is executed by using some special files called **launch files**.
+Since a previously-made ROS program already exists that allows you to move the robot using the keyboard, let's launch that ROS program to teleoperate the robot.
+
+Execute in a separate terminal:
+
+`roslaunch turtlebot_teleop keyboard_teleop.launch`
+
+Read the instructions on the screen to know which keys to use to move the robot around, and start moving the robot!
+
+
+Try it! When you're done, you can <kbd>CTRL</kbd>+<kbd>C</kbd> to stop the execution of the program.
+
+
+#### What is a launch file ?
+
+
+We've seen that ROS uses launch files in order to execute programs. But... how do they work? Let's have a look.
+
+lets  have a look at a launch file. Open the launch folder inside the ``turtlebot_teleop`` package and check the ``keyboard_teleop.launch`` file.
+
+``` bash
+
+  roscd turtlebot_teleop
+  cd launch
+  gedit keyboard_teleop.launch
+
+```
+
+
+You will see:
+
+``` xml
+<launch>
+    <!-- turtlebot_teleop_key already has its own built in velocity smoother -->
+    <node pkg="turtlebot_teleop" type="turtlebot_teleop_key" name="turtlebot_teleop_keyboard"  output="screen">
+      <param name="scale_linear" value="0.5" type="double"/>
+      <param name="scale_angular" value="1.5" type="double"/>
+      <remap from="turtlebot_teleop_keyboard/cmd_vel" to="cmd_vel_mux/input/teleop"/>
+    </node>
+</launch>
+```
+
+In the launch file, you have some extra tags for setting parameters and remaps. For now, don't worry about those tags and focus on the node tag.
+
+All launch files are contained within a ``<launch>`` tag. Inside that tag, you can see a ``<node>`` tag, where we specify the following parameters:
+
+- pkg="``package_name``": Name of the package that contains the code of the ROS program to execute
+- type="``python_file_name.py``" : Name of the program file that we want to execute
+- name="``node_name``" : Name of the ROS node that will launch our Python file
+- output="``type_of_output``" : Through which channel you will print the output of the Python file
+
+Now, lets create a package. Just a revision of your [previous](#create-a-package) tutorial.
+
+___Remember to create ROS packages inside the ``src`` folder___
+
+
+#### Create a package
+
+```catkin_create_pkg my_package rospy```
+
+
+This will create, inside our ``src``, directory a new package with some files in it. We'll check this later. Now, let's see how this command is built:
+
+```catkin_create_pkg <package_name> <package_dependecies>```
+
+
+The **package_name** is the name of the package you want to create, and the **package_dependencies** are the names of other ROS packages that your package depends on.
+
+Now, re-build your catkin_ws and source it as above.
+
+In order to check that our package has been created successfully, we can use some ROS commands related to packages. For example, let's type:
+
+```bash
+rospack list
+rospack list | grep my_package
+roscd my_package
+```
+
+
+``rospack list``: Gives you a list with all of the packages in your ROS system.
+
+``rospack list | grep my_package``: Filters, from all of the packages located in the ROS system, the package named *my_package*.
+
+``roscd my_package``: Takes you to the location in the Hard Drive of the package, named *my_package*.
+
+#### Exercise: Move the Robot
+
+Now you're ready to create your own publisher and make the robot move, so let's go for it!  
+
+First, you need to bring up the robot simulation in Gazebo using the command:
+
+`roslaunch turtlebot_gazebo turtlebot_world.launch`
+
+#### Required information:
+
+* The ``cmd_vel_mux/input/teleop`` topic is the topic used to move the robot. Do a ``rostopic info cmd_vel_mux/input/teleop`` in order to get information about this topic, and identify the message it uses. You have to modify the code to use that message.
+
+* In order to fill the Twist message, you need to create an instance of the message. In Python, this is done like this: ``var = Twist()``
+
+* In order to know the structure of the Twist messages, you need to use the ``rosmsg show`` command, with the type of the message used by the topic ``cmd_vel_mux/input/teleop``.
+
+* In this case, the robot uses a differential drive plugin to move. That is, the robot can only move linearly in the *x* axis, or rotationally in the angular *z* axis. This means that the only values that you need to fill in the Twist message are the linear *x* and the angular *z*.
+
+<img src ="https://risc.readthedocs.io/_images/xyz-frame.jpg" width="150">
+
+
+The magnitudes of the Twist message are in m/s, so it is recommended to use values between 0 and 1. For example, *0.5 m/s*
+
+#### What to do:
+
+Create a launch file that launches the code ``topic_publisher.py`` (basically the name of the python file stored in your src folder of your package.)
+
+Modify the code you used previously (in the previous week) to publish data to the ``cmd_vel_mux/input/teleop`` topic.
+
+Launch the program and check that the robot moves.
+
+You need the knowledge of attributes of rotopic and rosmsg like rostopic info, rostopic echo, rosmsg show. So, refer to the previous tutorial, if you have any queries with the same.
+
+*At first it may seems to be a bit harder problem but we want you to think first and explore the ROS environment. Use the required information and think about what is happening. We don't expect that you will solve it at your first go. You will get stuck in between various times. This will lead to discussion and you will get to know more as much you discuss on the group. It is a very intersting problem. You will see your bot move autonomously.*
+
+__Solution to the exercise will be provided by us after few days, *but* try to do it yourself and give your best!  
+Once you are done with the exercise, we will provide you with an amazing assignment!__
