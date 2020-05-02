@@ -3,7 +3,7 @@
 1. [Week 1](#week-1)
 	* [Assignment 1](#assignment-1)
 1. [Week 2](#week-2)
-
+	* [Assignment 2](#assignment-2)
 
 # ROS - Tutorials and Projects
 
@@ -327,5 +327,57 @@ You need the knowledge of attributes of rotopic and rosmsg like rostopic info, r
 
 *At first it may seems to be a bit harder problem but we want you to think first and explore the ROS environment. Use the required information and think about what is happening. We don't expect that you will solve it at your first go. You will get stuck in between various times. This will lead to discussion and you will get to know more as much you discuss on the group. It is a very intersting problem. You will see your bot move autonomously.*
 
-__Solution to the exercise will be provided by us after few days, *but* try to do it yourself and give your best!  
-Once you are done with the exercise, we will provide you with an amazing assignment!__
+__Solution to the exercise will be provided by us after few days, *but* try to do it yourself and give your best!__  
+
+### Assignment 2
+
+___
+
+In this assignment, you will write code to make the bot avoid walls in front of it. To help you achieve this, let’s divide the project down into smaller units:
+
+* Create a Publisher that writes into the *cmd_vel_mux/input/teleop* topic in order to move the robot.
+
+* Create a Subscriber that reads from the */scan* topic. This is the topic where the laser publishes its data.
+
+Depending on the readings you receive from the laser’s topic, you’ll have to change the data you’re sending to the *cmd_vel_mux/input/teleop* topic, in order to avoid the wall. This means, use the values of the laser to decide.
+
+
+### Required Information:
+
+* The data that is published into the */scan* topic has a large structure. For this project, you just have to pay attention to the ranges array.
+  
+  Hint:
+  To check the laser message type, execute the following:  `rosmsg show sensor_msgs/LaserScan`
+
+* The *ranges* array has a lot of values. The ones that are in the middle of the array represent the distances that the laser is detecting right in front of it. This means that the values in the middle of the array will be the ones that detect the wall. So in order to avoid the wall, you just have to read these values.
+
+    Hint: The size of the array is 639.  
+* The laser has a range of 30m. When you get readings of values around 30, it means that the laser isn’t detecting anything. If you get a value that is under 30, this will mean that the laser is detecting some kind of obstacle in that direction (the wall).
+
+* The scope of the laser is about 180 degrees from right to left. This means that the values at the beginning and at the end of the *ranges* array will be the ones related to the readings on the sides of the laser (left and right), while the values in the middle of the array will be the ones related to the front of the laser.
+
+So, in the end you probably will get something like this:
+
+The robot moves forward until it detects an obstacle in front of it which is closer than 1 meter, so it begins to turn left in order to avoid it.
+
+<!-- Links -->
+![Reuqired Output](https://risc.readthedocs.io/_images/mini_project_1.gif)
+
+The robot keeps turning left and moving forward until it detects that it has an obstacle at the right side which is closer than 1 meter, so it stops and turns left in order to avoid it.
+
+![Reuqired Output](https://risc.readthedocs.io/_images/mini_project_2.gif)
+
+__If you are using ROS Melodic, do the following:__  
+People having turtlebot3 have to simualte the same task in turtlebot3_house using any of the bots: burger, waffle, waffle-pi. Use all the required information as stated above.
+
+#### Installation problem in turtlebot/turtlebot3:
+For **ROS kinetic** do: `sudo apt-get install ros-kinetic-turtlebot-*`
+
+For **ROS mleodic** do: `sudo apt-get install ros-melodic-turtlebot3-*`
+
+If anyone is still facing any issue, then you can ping any of us ASAP.
+
+#### Submission details:
+You have to make a .zip file of your package and submit it to **erciitbombay@gmail.com**.  
+Submissions of only registered people will be considered.  
+**Deadline: 11:59 pm, 07/05/20**
