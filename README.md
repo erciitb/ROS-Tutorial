@@ -327,7 +327,28 @@ You need the knowledge of attributes of rotopic and rosmsg like rostopic info, r
 
 *At first it may seems to be a bit harder problem but we want you to think first and explore the ROS environment. Use the required information and think about what is happening. We don't expect that you will solve it at your first go. You will get stuck in between various times. This will lead to discussion and you will get to know more as much you discuss on the group. It is a very intersting problem. You will see your bot move autonomously.*
 
-__Solution to the exercise will be provided by us after few days, *but* try to do it yourself and give your best!__  
+___
+
+__Solution to the exercise__ :
+
+```python
+#! /usr/bin/env python
+
+import rospy
+from geometry_msgs.msg import Twist
+
+rospy.init_node('move_robot_node')
+pub = rospy.Publisher('cmd_vel_mux/input/teleop', Twist, queue_size=1)
+rate = rospy.Rate(2)
+move = Twist()
+move.linear.x = 0.5 #Move the robot with a linear velocity in the x axis
+move.angular.z = 0.5 #Move the with an angular velocity in the z axis
+
+while not rospy.is_shutdown(): 
+  pub.publish(move)
+  rate.sleep()
+```
+___
 
 ### Assignment 2
 
