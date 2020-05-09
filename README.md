@@ -4,6 +4,7 @@
 	* [Assignment 1](#assignment-1)
 1. [Week 2](#week-2)
 	* [Assignment 2](#assignment-2)
+1. [Week 3](#week-3)
 
 # ROS - Tutorials and Projects
 
@@ -381,3 +382,124 @@ If anyone is still facing any issue, then you can ping any of us ASAP.
 You have to make a .zip file of your package and submit it to **erciitbombay@gmail.com**.  
 Submissions of only registered people will be considered.  
 **Deadline: 11:59 pm, 07/05/20**
+
+
+## Week 3
+
+People using ROS-kinetic do:
+
+`sudo apt-get install ros-kinetic-turtlebot3-*`
+
+Those using ROS-melodic do:
+
+`sudo apt-get install ros-melodic-turtlebot3-*`
+
+After the installation:
+
+```bash
+cd ~
+nano .bashrc
+```
+
+At the end of your .bashrc file add this line:
+
+```bash
+export TURTLEBOT3_MODEL=${waffle}
+```
+
+
+We have mentioned waffle here. You can use waffle_pi or burger also.
+
+In the following weeks we will cover these topics:
+
+* SLAM
+* Navigation
+* Path Planning
+
+Let's start with SLAM:
+
+### SLAM
+
+**SLAM** (Simultaneous Localization and Mapping) is a technique to draw a map by estimating current location in an arbitrary space. 
+
+Now do things step-by-step in different terminals:
+```bash
+roscore
+
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+```
+
+```bash
+Control Your TurtleBot3!
+  ---------------------------
+  Moving around:
+          w
+     a    s    d
+          x
+
+  w/x : increase/decrease linear velocity
+  a/d : increase/decrease angular velocity
+  space key, s : force stop
+
+  CTRL-C to quit
+
+```
+
+> Practice mapping the environment on your own as you will require it for the assignment.
+
+
+Now move your bot in entire world and start mapping the world.
+It may take a larger time to map the whole world and your PC may also heat up a bit, but don't worry a lot about it.
+Sometimes your map will get distorted in between and when you see the terminal, it will show something like this:
+
+ `Scan Matching Failed, using odometry. Likelihood = 0`
+
+This mostly happens when there is some issue with **tf** package. Maneuver your bot multiple times to the entire world until you get a perfect map.
+It requires a lot of practice to build a good map, so you may find it difficult to get a good map in first try. 
+
+Once your map is built, i.e. you have mapped the entire world, then for saving this map, execute this:
+
+`rosrun map_server map_saver -f ~/map`
+
+> Remember to save your map after completing mapping, else your entire work will be of no use.
+
+For now, we are done SLAM basics
+
+### Navigation
+
+Just as a demo of how it works, do the following after closing all the previous windows:
+
+```bash
+roscore
+
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+
+roslaunch turtlebot3_gazebo turtlebot3_gazebo_rviz.launch
+
+```
+
+Now a new window of RViz will popup. **RVIZ** is a ROS graphical interface that allows you to visualize a lot of information, using plugins for many kinds of available topics.
+
+Now till now, you are somewhat familiar with what all the things we are using. Now, turtlebot3 provides its own navigation example. So, first we will simulate it. Close all the terminals except roscore ;)
+
+Now, execute the followin commands:
+```bash
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+```
+
+A RViz window will popup, it may take sometime to open. Hold your breathe till that. Now, follow the given below steps.
+
+1. Click on **2D pose estimate** loacted at the top panels and then click on any random point on the map. (The bot will move to that location fastly. It basically sets your initial position)
+
+2. Click on **2D nav goal** loacted side of 2D pose estimate and then click on any point on the graph.(This is your goal location.)
+
+Now, you will see an arrow pointing to your goal location and the bot will start moving slowly towards it. Tha path planning algorithm which we are using here is **DWA Algorithm**. Google it, it's an interesting algorithm which will aviod both static as well as dynamic obstacles.
