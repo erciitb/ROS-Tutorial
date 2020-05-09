@@ -425,7 +425,7 @@ nano .bashrc
 At the end of your .bashrc file add this line:
 
 ```bash
-export TURTLEBOT3_MODEL=${waffle}
+export TURTLEBOT3_MODEL=waffle
 ```
 
 
