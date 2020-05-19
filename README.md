@@ -6,6 +6,7 @@
 	* [Assignment 2](#assignment-2)
 1. [Week 3](#week-3)
 	* [Assignment 3](#assignment-3)
+1. [Week 4](#week-4)
 
 # ROS - Tutorials and Projects
 
@@ -1114,3 +1115,15 @@ So, upto now, you have your own map of the environment and ready to do navigatio
 This week contains **part two of the Assignment too** in which we will navigate in this map that we have created. We will upload that task after 2 days. So, till then make a good map ;)
 
 Submission details will be provided after part 2 is uploaded. 
+
+## WEEK 4
+
+This is the last week of this ROS tutorial session and in this week, we will be focusing on building a custom bot. At the end of this exercise you will be able to make a robot and launch it in gazebo and simulate in the environment. 
+
+Please refer to the link given below:
+
+[Custom bot development from scratch](https://www.theconstructsim.com/ros-projects-exploring-ros-using-2-wheeled-robot-part-1/#part10)
+
+You **don't** need to do this on **Robot Development Studio**. Just follow the same steps as given in the link. This will resolve all your doubts that you were asking in week 3 content about what is **URDF** file and **.sdf** file! Feel free to post doubts in the group.
+
+There will be no assignment in this week. The part 2 of Week 3 assignment will be uploaded shortly. For time being, complete this.
