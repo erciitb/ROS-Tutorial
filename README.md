@@ -1116,7 +1116,7 @@ This week contains **part two of the Assignment too** in which we will navigate 
 
 Submission details will be provided after part 2 is uploaded. 
 
-## WEEK 4
+## Week 4
 
 This is the last week of this ROS tutorial session and in this week, we will be focusing on building a custom bot. At the end of this exercise you will be able to make a robot and launch it in gazebo and simulate in the environment. 
 
