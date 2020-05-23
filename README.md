@@ -1114,7 +1114,7 @@ rosrun map_server map_saver -f ~/map
 So, upto now, you have your own map of the environment and ready to do navigation in it. 
 
 
-### Week 3b
+### Assignment 3b
 
 In this tutorial, we will do navigation in the map that we have done in week 3(A) assignment. 
 
