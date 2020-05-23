@@ -5,7 +5,8 @@
 1. [Week 2](#week-2)
 	* [Assignment 2](#assignment-2)
 1. [Week 3](#week-3)
-	* [Assignment 3](#assignment-3)
+	* [Assignment 3a](#assignment-3a)
+	* [Assignment 3b](#assignment-3b)
 1. [Week 4](#week-4)
 
 # ROS - Tutorials and Projects
@@ -527,7 +528,7 @@ A RViz window will popup, it may take sometime to open. Hold your breathe till t
 
 Now, you will see an arrow pointing to your goal location and the bot will start moving slowly towards it. Tha path planning algorithm which we are using here is **DWA Algorithm**. Google it, it's an interesting algorithm which will aviod both static as well as dynamic obstacles.
 
-### Assignment 3
+### Assignment 3a
 
 ___
 
@@ -1112,9 +1113,92 @@ rosrun map_server map_saver -f ~/map
 
 So, upto now, you have your own map of the environment and ready to do navigation in it. 
 
-This week contains **part two of the Assignment too** in which we will navigate in this map that we have created. We will upload that task after 2 days. So, till then make a good map ;)
 
-Submission details will be provided after part 2 is uploaded. 
+### Week 3b
+
+In this tutorial, we will do navigation in the map that we have done in week 3(A) assignment. 
+
+Before proceeding on to it directly, let's first move autonomously in a given map file. So, in the same directory as the previous one, make a launch file and name it as let's say `navigation.launch`
+
+Now, do
+```
+gedit navigation.launch
+```
+Copy paste the given below code in it:
+```bash
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
+  </group>
+</launch>
+```
+
+Now, do the following things step by step:
+
+* ```roscore```
+* ```roslaunch turtlebot3_gazebo turtlebot3_house.launch ```
+* ```roslaunch turtlebot3_navigation turtlebot3_navigation.launch ```
+
+A RViz window will pop up after sometime. Now, do the following things:
+* Select **2-D pose estimate** and click on any point in the map. The robot will move to this point autonomously. This will set the initial location of the robot.
+* Next step is to select **2-D nav goal** and click on any point in the map. This point will be our final position.
+
+Now, you will see that robot will move to this point by using DWA path planning algorithm. For more details about DWA algorithm refer this:
+[DWA algorithm ](https://ieeexplore.ieee.org/document/8833259/)
+
+Play with the things in the left panel, you will get to know that how the things are working in RViz.
+
+Now, the final step is to move to our robot in the map that we have build. 
+
+Make a directory named as maps in your package and copy paste the `.pgm` and `.yaml` files that you have made using assignment 3(A). Let's say the name of your `.pgm` file is **my_first_map.pgm** and name of your `.yaml` is **my_map.yaml**
+
+Next step is to modify the **my_map.yaml** file.
+Do, 
+```bash
+gedit my_map.yaml
+```
+You have to change the first line of this to 
+```bash
+image: ./my_first_map.pgm
+```
+Next we have to move our robot in our map.
+
+
+For this do the following changes in your `navigation.launch` file
+```bash
+<arg name="map_file" default="$(find package_name)/maps/my_map.yaml"/>
+```
+
+Now all the task has been done. Follow the same steps as described above to make your robot autonomously in your own environment.
+
+### Submission details:
+Since this task 2 doesn't require much of your time, you have to submit complete assignment 3 by **11:59 pm, 25/05/2020**. You have to send your package and video recording of your screen while the robot is moving in your own map.  
+Send it as zip file on **erciitbombay@gmail.com** 
 
 ## Week 4
 
