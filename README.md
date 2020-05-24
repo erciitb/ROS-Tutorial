@@ -1161,7 +1161,7 @@ Copy paste the given below code in it:
 Now, do the following things step by step:
 
 * ```roscore```
-* ```roslaunch turtlebot3_gazebo turtlebot3_house.launch ```
+* ```roslaunch turtlebot3_gazebo turtlebot3_world.launch ```
 * ```roslaunch turtlebot3_navigation turtlebot3_navigation.launch ```
 
 A RViz window will pop up after sometime. Now, do the following things:
